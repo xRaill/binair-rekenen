@@ -1,48 +1,47 @@
 import React, { useState, useCallback } from 'react';
-import { Text, View, TextInput, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, StatusBar } from 'react-native';
 
-const styles = StyleSheet.create({
-	input: {
-		backgroundColor: 'gray',
-		fontSize: 30
-	},
-	cubes : {
-		backgroundColor: 'red',
-		width: 200,
-		height: 200,
-		margin: 5
-	},
-	output: {
-		textAlign: 'center',
-		fontSize: 25,
-		fontWeight: "bold"
-	}
-});
+import NumPad from './components/NumPad';
 
 const App = () => {
+	const [decimalNum, setDecimalNum] = useState();
+	const [binaryNum, setBinaryNum] = useState();
 
-	const [inputNum, setInputNum] = useState('');
-	const [output, setOutput] = useState();
+	const numPadCallback = useCallback(numPad => {
+		if (numPad) {
+			setDecimalNum(numPad.getValue());
+			setBinaryNum(numPad.getValue().toString(2));
+		}
+	}, []);
 
-	const calculate = useCallback(() => {
-		setOutput((inputNum >>> 0).toString(2));
-		setInputNum('');
-	}, [inputNum]);
+	StatusBar.setTranslucent(true);
+	StatusBar.setBackgroundColor('rgba(0, 0, 0, 0.1)');
 
 	return (
-		<View>
-			<TextInput
-				style={styles.input}
-				placeholder={'Placeholder'}
-				keyboardType={'number-pad'}
-				textAlign={'center'}
-				value={inputNum}
-				onChangeText={val => setInputNum(val)}
-				onSubmitEditing={calculate}
-			/>
-			<Text style={styles.output}>{output}</Text>
+		<View style={styles.container}>
+			<View style={styles.display}>
+				<Text style={styles.text}>{decimalNum ? decimalNum : null}</Text>
+				<Text style={styles.text}>{decimalNum ? binaryNum : null}</Text>
+			</View>
+			<NumPad ref={numPadCallback} />
 		</View>
-	)
+	);
 };
 
 export default App;
+
+const styles = StyleSheet.create({
+	container: {
+		backgroundColor: '#152a38',
+		flex: 1,
+		justifyContent: 'space-between',
+	},
+	display: {
+		height: '60%',
+	},
+	text: {
+		marginTop: 30,
+		color: 'white',
+		fontSize: 30,
+	},
+});
