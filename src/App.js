@@ -47,6 +47,7 @@ const styles = StyleSheet.create({
 		color: 'white',
 		fontSize: 30,
 		textAlign: 'right',
+		paddingHorizontal: 10,
 	},
 	label: {
 		borderTopWidth: 1,
