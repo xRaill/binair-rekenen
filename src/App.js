@@ -38,6 +38,7 @@ const styles = StyleSheet.create({
 		backgroundColor: '#152a38',
 		flex: 1,
 		justifyContent: 'space-between',
+		paddingBottom: 5,
 	},
 	display: {
 		height: '60%',

@@ -63,7 +63,6 @@ export default forwardRef(NumPad);
 const styles = StyleSheet.create({
 	container: {
 		justifyContent: 'space-around',
-		backgroundColor: '#29435c',
 		flex: 1,
 	},
 	row: {
@@ -79,5 +78,6 @@ const styles = StyleSheet.create({
 	},
 	text: {
 		textAlign: 'center',
+		fontSize: 30,
 	},
 });
