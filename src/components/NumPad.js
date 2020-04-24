@@ -1,11 +1,10 @@
-import React, { useState, forwardRef, useImperativeHandle, useEffect } from 'react';
+import React, { useState, forwardRef, useImperativeHandle } from 'react';
 import {
 	View,
 	Text,
 	StyleSheet,
 	TouchableNativeFeedback,
 	Vibration,
-	ToastAndroid,
 } from 'react-native';
 
 const NumPad = (props, ref) => {
@@ -33,10 +32,6 @@ const NumPad = (props, ref) => {
 					: setValue(parseInt(value.toString().slice(0, -1), 10));
 		}
 	};
-
-	useEffect(() => {
-		ToastAndroid.show(value.toString(), 100);
-	}, [value]);
 
 	const data = [[7, 8, 9], [4, 5, 6], [1, 2, 3], ['C', 0, 'DEL']];
 
