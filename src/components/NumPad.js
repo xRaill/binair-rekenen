@@ -7,6 +7,8 @@ import {
 	Vibration,
 } from 'react-native';
 
+const maxChar = 15;
+
 const NumPad = (props, ref) => {
 	const [value, setValue] = useState(0);
 
@@ -18,10 +20,14 @@ const NumPad = (props, ref) => {
 		Vibration.vibrate(50);
 		switch (action) {
 			default:
-				action ? setValue(value * 10 + action) : setValue(action);
+				action
+					? value.toString().length < maxChar
+						? setValue(value * 10 + action)
+						: null
+					: setValue(action);
 				break;
 			case 0:
-				setValue(value * 10);
+				value.toString().length < maxChar ? setValue(value * 10) : null;
 				break;
 			case 'C':
 				setValue(0);
