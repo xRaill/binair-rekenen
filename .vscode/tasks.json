@@ -1,0 +1,36 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build Android",
+            "type": "shell",
+            "command": "yarn android",
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true,
+            },
+        },
+        {
+            "label": "Run Packager",
+            "type": "shell",
+            "command": "yarn start",
+            "problemMatcher": [],
+            "isBackground": true,
+            "group": "test",
+            "presentation": {
+                "echo": true,
+                "reveal": "silent",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": false,
+            },
+            "runOptions": {
+                "runOn": "folderOpen"
+            },
+        }
+    ]
+}
