@@ -1,11 +1,6 @@
 import React, { useState, forwardRef, useImperativeHandle } from 'react';
-import {
-	View,
-	Text,
-	StyleSheet,
-	TouchableNativeFeedback,
-	Vibration,
-} from 'react-native';
+import { View, Text, StyleSheet, Vibration } from 'react-native';
+import Button from './Button';
 
 const maxChar = 15;
 
@@ -46,11 +41,13 @@ const NumPad = (props, ref) => {
 			{data.map((val, i) => (
 				<View key={i} style={styles.row}>
 					{val.map((val2, i2) => (
-						<TouchableNativeFeedback key={i2} onPress={() => handlePress(val2)}>
-							<View style={styles.col}>
-								<Text style={styles.text}>{val2}</Text>
-							</View>
-						</TouchableNativeFeedback>
+						<Button
+							key={i2}
+							onPress={() => handlePress(val2)}
+							style={styles.col}
+							textStyle={styles.text}>
+							{val2}
+						</Button>
 					))}
 				</View>
 			))}

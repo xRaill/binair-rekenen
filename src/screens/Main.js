@@ -1,9 +1,10 @@
 import React, { useState, useCallback } from 'react';
 import { View, Text, StyleSheet, StatusBar } from 'react-native';
-
+import changeNavigationBarColor from 'react-native-navigation-bar-color';
 import NumPad from '../components/NumPad';
+import Button from '../components/Button';
 
-const Main = () => {
+const Main = ({ navigation }) => {
 	const [decimalNum, setDecimalNum] = useState();
 	const [binaryNum, setBinaryNum] = useState();
 
@@ -17,6 +18,8 @@ const Main = () => {
 	StatusBar.setTranslucent(true);
 	StatusBar.setBackgroundColor('rgba(0, 0, 0, 0.1)');
 
+	changeNavigationBarColor('#264459', false);
+
 	return (
 		<View style={styles.container}>
 			<View style={styles.display}>
@@ -26,6 +29,16 @@ const Main = () => {
 				<Text style={styles.text}>{decimalNum ? binaryNum : null}</Text>
 				<Text style={styles.label}>Binary</Text>
 			</View>
+			<Button
+				disabled={!decimalNum}
+				onPress={() =>
+					navigation.navigate('Help', {
+						binaryNum: binaryNum,
+						decimalNum: decimalNum,
+					})
+				}>
+				<Text>Uitleg</Text>
+			</Button>
 			<NumPad ref={numPadCallback} />
 		</View>
 	);
